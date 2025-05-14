@@ -1,0 +1,166 @@
+/* General Body Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #141414; /* Dark background for better contrast */
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+}
+
+/* Main Container Styles */
+.titlecards {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 5%;
+  gap: 10px;
+}
+
+/* Heading Styles */
+.titlecards h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ff8c00; /* Highlight color */
+  position: relative;
+  text-align: center;
+}
+
+/* Add a subtle underline animation to the heading */
+.titlecards h2::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 50px;
+  height: 4px;
+  background-color: #ff8c00;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: headingUnderline 2s infinite alternate;
+}
+
+@keyframes headingUnderline {
+  from {
+    width: 50px;
+  }
+  to {
+    width: 80px;
+  }
+}
+
+/* Card List Styles */
+.card-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll; /* Enables smooth horizontal scrolling */
+  flex-wrap: nowrap;
+  scroll-behavior: smooth; /* Smooth scrolling effect */
+  padding-bottom: 10px;
+}
+
+.card-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Card Container */
+.card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.card img {
+  width: 240px; /* Default size for larger screens */
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.card img:hover {
+  transform: scale(1.08); /* Enhance scaling for hover effect */
+  box-shadow: 0px 12px 20px rgba(255, 140, 0, 0.3);
+}
+
+.card p {
+  margin-top: 8px;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.9rem;
+  transition: background-color 0.4s ease;
+}
+
+.card:hover p {
+  background-color: #ff8c00; /* Highlight background */
+}
+
+/* Subtle animation for cards appearing */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: cardFadeIn 0s ease-in-out;
+}
+
+/* Responsive Design */
+
+/* For Tablets and Smaller Screens */
+@media screen and (max-width: 768px) {
+  .titlecards h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-list {
+    gap: 15px;
+    flex-wrap: wrap; /* Allow cards to wrap */
+    justify-content: center;
+  }
+
+  .card img {
+    width: 180px; /* Reduce card size */
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+}
+
+/* For Mobile Phones */
+@media screen and (max-width: 480px) {
+  .titlecards {
+    margin: 10px 5%;
+    gap: 5px;
+  }
+
+  .titlecards h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .card-list {
+    gap: 10px;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center;
+  }
+
+  .card img {
+    width: 90%; /* Take up most of the screen width */
+  }
+
+  .card p {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+}
