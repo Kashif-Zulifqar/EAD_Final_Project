@@ -41,13 +41,13 @@ export const getMovies = async (req, res) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        res.status(200).json(response.data);
+        console.log("Response data:", response.status);
       })
       .catch((error) => {
         console.error("Error fetching movie videos:", error);
       });
     // Populate user details
-    res.status(200).json(movies);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

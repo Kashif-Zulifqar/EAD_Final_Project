@@ -7,7 +7,6 @@ const Player = () => {
   const navigate = useNavigate();
   const { id } = useParams(); // Ensure `id` is correct
   const [apiData, SetApidata] = useState(null);
-  const [query, setQuery] = useState("");
 
   useEffect(() => {
     console.log("Fetching movie with ID:", id);
@@ -22,41 +21,47 @@ const Player = () => {
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP Error! Status: ${res.status}`);
         const text = await res.text();
-        return text ? JSON.parse(text) : {}; // ✅ Avoids empty response issue
+        const data = text ? JSON.parse(text) : {}; // ✅ Avoids empty response issue
+        console.log("Fetched movie data:", data);
+        // Check if the 'results' exists and is an array
+        if (
+          data.results &&
+          Array.isArray(data.results) &&
+          data.results.length > 0
+        ) {
+          SetApidata(data.results[0]); // Get the first result
+        } else {
+          SetApidata(null); // In case no result is found
+        }
       })
-      .then((data) => {
-        console.log("Fetched JSON:", data);
-        SetApidata(data.results?.[0] || {});
-      })
-      .catch((err) => console.error("Fetch Error:", err));
+      .catch((err) => {
+        console.error("Fetch Error:", err);
+        SetApidata(null); // Fallback to null in case of error
+      });
   }, [id]);
 
-  const searchMovies = async () => {
-    if (!query) return;
-
-    try {
-      const response = await axios.get(
-        `http://localhost:1000/api/movies/search?query=${query}`
-      );
-      setMovies(response.data.results); // TMDB API returns results in `results` key
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
-  };
+  // Ensure we only try to render if apiData is available
+  if (!apiData) {
+    return <p>Loading movie...</p>; // or your own loading message
+  }
 
   return (
     <div className="player">
       <img src={back_arrow_icon} alt="Back" onClick={() => navigate(-1)} />
-      <iframe
-        src={`https://www.youtube.com/embed/${apiData.key}`}
-        width="80%"
-        height="90%"
-        title="trailer"
-        allowFullScreen
-      ></iframe>
+      {apiData.key ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${apiData.key}`}
+          width="80%"
+          height="90%"
+          title="trailer"
+          allowFullScreen
+        ></iframe>
+      ) : (
+        <p>Trailer not available</p>
+      )}
+
       <div className="details">
         <p className="hovered">Movie Details</p>
-        <p>{apiData.published_at?.slice(0, 10) || "No Date Available"}</p>
         <p>{apiData.name || "No Title"}</p>
         <p>{apiData.type || "No Type Available"}</p>
       </div>
