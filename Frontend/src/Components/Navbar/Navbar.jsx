@@ -12,11 +12,11 @@ const Navbar = () => {
   var { name, email, signstate, setSignstate } = useContext(AuthContext);
   const navRef = useRef();
   const navigate = useNavigate();
-  const GetUser = async () => {
-    var user = await axios.get(`http://localhost:1000/user/${email}`);
-    console.log(name + "dfs" + "User got " + user.email);
-  };
-  GetUser();
+  // const GetUser = async () => {
+  //   var user = await axios.get(`http://localhost:1000/user/${email}`);
+  //   console.log(name + "dfs" + "User got " + user.email);
+  // };
+  // GetUser();
   // Sign Out Functionality
   const handleSignOut = () => {
     localStorage.removeItem("currentUser"); // Clear user session
@@ -28,15 +28,15 @@ const Navbar = () => {
   const handleLogin = () => {
     navigate("/"); // Redirect to Login Page
   };
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 80) {
-        navRef.current.classList.add("nav-dark");
-      } else {
-        navRef.current.classList.remove("nav-dark");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     if (window.scrollY >= 80) {
+  //       navRef.current.classList.add("nav-dark");
+  //     } else {
+  //       navRef.current.classList.remove("nav-dark");
+  //     }
+  //   });
+  // }, []);
   return (
     <div className="navbar" ref={navRef}>
       <div className="navleft">

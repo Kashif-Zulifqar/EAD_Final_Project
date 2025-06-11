@@ -1,44 +1,49 @@
-import User from "../Models/Client.mjs"; // Assuming you named your schema files accordingly
+import User from "../Models/Client.mjs";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import express from "express";
-
-// 1. Create a new user
 export const Signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    console.log(name + email);
+    console.log("Inside signup controller - received:", name, email);
 
     if (!name || !email || !password) {
-      res.status(201).json({ massage: "Provide complete information" });
-    } else {
-      //Password hashing
-      let userexist = await User.findOne({ email });
-      console.log(userexist);
-
-      if (userexist) {
-        console.log("inside user not exist");
-
-        res.json({ message: "User already exist" });
-      }
-      //Password Hashing
-      const hashedpass = await bcrypt.hash(password, 10);
-      //User save in db
-      const newUser = new User({ name, email, password: hashedpass });
-      await newUser.save();
-      console.log("user saved" + newUser);
-
-      //JWT token generation
-      const token = jwt.sign({ userid: newUser._id }, "JWTSecret", {
-        expiresIn: "2d",
-      });
-      console.log("token" + token);
-      res.json({ token, newUser });
+      return res
+        .status(400)
+        .json({ message: "Please provide name, email, and password" });
     }
+
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      console.log("User already exists with this email");
+      return res.status(409).json({ message: "User already exists" });
+    }
+
+    const hashedPass = await bcrypt.hash(password, 10);
+
+    const newUser = new User({ name, email, password: hashedPass });
+    await newUser.save();
+    console.log("User saved successfully:", newUser.email);
+
+    const token = jwt.sign({ userid: newUser._id }, "JWTSecret", {
+      expiresIn: "2d",
+    });
+
+    return res.status(201).json({
+      message: "User created successfully",
+      token,
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+      },
+    });
   } catch (error) {
-    console.log("Error Occured");
+    console.error("Signup error:", error);
+    return res.status(500).json({ message: "Server error during signup" });
   }
 };
+
 //2. Verify
 export const Signin = async (req, res) => {
   try {

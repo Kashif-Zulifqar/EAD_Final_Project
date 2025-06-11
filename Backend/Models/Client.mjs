@@ -4,10 +4,6 @@ import AutoIncrement from "mongoose-sequence"; // Import mongoose-sequence
 
 const userSchema = new mongoose.Schema(
   {
-    userid: {
-      type: Number,
-      unique: true,
-    },
     name: {
       type: String,
       required: true,
