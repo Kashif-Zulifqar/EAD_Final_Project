@@ -44,19 +44,26 @@ const Login = () => {
         email,
         password,
       });
-      if (result.status === 200 && result.data) {
+
+      if (result.status === 200 && result.data?.token) {
         sessionStorage.setItem("user", JSON.stringify(result.data));
-        setPopupMessage(`Login Successful, Welcome ${result.data.name}`);
+        setPopupMessage(
+          `Login Successful, Welcome ${result.data.user?.name || "User"}`
+        );
         setOpenPopup(true);
         setTimeout(() => {
           navigate("/home");
         }, 2000);
       } else {
-        setPopupMessage("Invalid Credentials");
+        setPopupMessage("Invalid credentials. Please try again.");
         setOpenPopup(true);
       }
     } catch (error) {
-      setPopupMessage(error.response?.data?.message || "Invalid Credentials");
+      const message =
+        error.response?.data?.message ||
+        "Login failed. Please check your credentials.";
+      console.error("Login error:", message);
+      setPopupMessage(error.response?.data?.message);
       setOpenPopup(true);
     }
   };
@@ -92,7 +99,7 @@ const Login = () => {
         clearFields();
         setSignstate("Sign In");
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 2000);
       } else {
         setPopupMessage("Signup failed: Invalid data");
@@ -240,6 +247,7 @@ const Login = () => {
         .popup-content {
           background: white;
           padding: 20px;
+          color: black;
           border-radius: 5px;
           text-align: center;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);

@@ -20,12 +20,12 @@ export const Signup = async (req, res) => {
     }
 
     const hashedPass = await bcrypt.hash(password, 10);
-
     const newUser = new User({ name, email, password: hashedPass });
+
     await newUser.save();
     console.log("User saved successfully:", newUser.email);
 
-    const token = jwt.sign({ userid: newUser._id }, "JWTSecret", {
+    const token = jwt.sign({ userId: newUser._id }, "JWTSecret", {
       expiresIn: "2d",
     });
 
@@ -40,39 +40,52 @@ export const Signup = async (req, res) => {
     });
   } catch (error) {
     console.error("Signup error:", error);
-    return res.status(500).json({ message: "Server error during signup" });
+    return res
+      .status(500)
+      .json({ message: error.message || "Server error during signup" });
   }
 };
 
 //2. Verify
+// backend/controllers/authController.js
+
 export const Signin = async (req, res) => {
   try {
-    var { email, password } = req.body;
-    console.log(email);
+    const { email, password } = req.body;
+    console.log("Received:", email, password);
 
     if (!email || !password) {
-      res.send("Invalid credentials");
+      return res
+        .status(400)
+        .json({ message: "Email and password are required." });
     }
-    let user = await User.findOne({ email });
+
+    const user = await User.findOne({ email });
     if (!user) {
-      res.send("User does not exist");
+      return res.status(404).json({ message: "User does not exist." });
     }
-    console.log(user);
 
     const matched = await bcrypt.compare(password, user.password);
     if (!matched) {
-      res.send("Invalid Password");
+      return res.status(401).json({ message: "Invalid password." });
     }
+
     const token = jwt.sign(
-      { userId: user._id }, // Store user ID in token
-      "JWTSecret", // Use a secret key (should be in .env)
-      { expiresIn: "7d" } // Token expires in 7 days
+      { userId: user._id },
+      "JWTSecret", // Replace with process.env.JWT_SECRET in production
+      { expiresIn: "7d" }
     );
-    res.json({ token, user: { id: user._id, email: user.email } });
+
+    return res.status(200).json({
+      token,
+      user: { id: user._id, email: user.email, name: user.name || "User" },
+    });
   } catch (error) {
-    console.log(error.massage);
+    console.error("Signin error:", error.message);
+    return res.status(500).json({ message: "Internal server error." });
   }
 };
+
 //  3.Get
 export const getUser = async (req, res) => {
   // const { userId } = req.userId;
