@@ -37,15 +37,24 @@ const Home = () => {
             </button>
           </div> */}
         </div>
-        <h1>{email}</h1>
-        {console.log(email)}
         <div className="more-cards">
           <Titlecards />
 
-          <Titlecards title={"Blockbuster"} category={"top_rated"} />
-          <Titlecards title={"Only on Netflix"} category={"popular"} />
-          <Titlecards title={"Upcoming"} category={"upcoming"} />
-          <Titlecards title={"Top Picks for You"} category={"now_playing"} />
+          <div id="blockbuster">
+            <Titlecards title={"Blockbuster"} category={"top_rated"} />
+          </div>
+
+          <div id="netflix">
+            <Titlecards title={"Only on Netflix"} category={"popular"} />
+          </div>
+
+          <div id="upcoming">
+            <Titlecards title={"Upcoming"} category={"upcoming"} />
+          </div>
+
+          <div id="top-picks">
+            <Titlecards title={"Top Picks for You"} category={"now_playing"} />
+          </div>
         </div>
       </div>
       <Footer></Footer>

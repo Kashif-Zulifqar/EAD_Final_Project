@@ -20,7 +20,7 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1.5vw 6vw;
+  padding: 1vw 4vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -52,120 +52,614 @@ body {
   transform: scale(1.1) rotate(3deg);
   filter: drop-shadow(0 0 50px var(--secondary-color));
 }
+/* NavLeft Container - Modern layout with premium styling */
 .navleft {
   display: flex;
-  flex-direction: row;
-  gap: 30px;
+  align-items: center;
+  gap: 3rem;
+  padding: 1rem 2rem;
+  /* background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.01) 100%
+  ); */
+
+  /* border-radius: 24px; */
+  /* border: 1px solid rgba(255, 255, 255, 0.08); */
+  box-shadow: 0 8px 2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
-/* Nav Links - Stylish Hover Animation */
+
+/* Subtle animated background gradient */
+.navleft::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 140, 0, 0.03),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.navleft:hover::before {
+  left: 100%;
+}
+
+.navleft:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Logo Styling - Premium brand identity */
+.navleft img {
+  height: 2.5rem;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  position: relative;
+  z-index: 2;
+}
+
+.navleft img:hover {
+  transform: scale(1.05) rotate(1deg);
+  filter: drop-shadow(0 4px 16px rgba(255, 140, 0, 0.3));
+}
+
+/* Navigation List - Modern horizontal layout */
 .navleft ul {
   display: flex;
-  gap: 2vw;
+  align-items: center;
+  gap: 2.5rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Navigation Items - Elegant styling */
+.navleft li {
+  position: relative;
   margin: 0;
   padding: 0;
 }
 
-.navleft ul li {
-  cursor: pointer;
-  color: var(--text-light);
+/* Navigation Links - Premium interactive design */
+.navleft a {
+  display: inline-block;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
   position: relative;
-  transition: color var(--transition-speed), transform var(--transition-speed);
+  overflow: hidden;
+
+  /* Modern gradient text */
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Smooth transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Subtle text shadow for depth */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
-.navleft ul li::after {
+/* Animated background for links */
+.navleft a::before {
   content: "";
   position: absolute;
-  bottom: -4px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.1) 0%,
+    rgba(255, 180, 0, 0.08) 50%,
+    rgba(255, 140, 0, 0.06) 100%
+  );
+  border-radius: 12px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+/* Underline animation */
+.navleft a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: var(--primary-color);
-  transition: all 0.3s ease-in-out;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color, #ff8c00),
+    var(--secondary-color, #ffb347)
+  );
+  border-radius: 1px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
 
-.navleft ul li:hover {
-  color: var(--secondary-color);
+/* Hover Effects */
+.navleft a:hover {
   transform: translateY(-2px);
+
+  /* Vibrant gradient text on hover */
+  background: linear-gradient(
+    135deg,
+    var(--primary-color, #ff8c00) 0%,
+    var(--secondary-color, #ffb347) 50%,
+    #ffd700 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Enhanced shadow */
+  filter: drop-shadow(0 4px 8px rgba(255, 140, 0, 0.2));
 }
 
-.navleft ul li:hover::after {
+.navleft a:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.navleft a:hover::after {
   width: 100%;
 }
 
-/* Navbar Icons - Animated Glow */
-.navright .icons {
-  width: 2vw;
-  max-width: 25px;
-  cursor: pointer;
-  filter: brightness(0) invert(1);
-  transition: transform var(--transition-speed), box-shadow 0.4s ease-in-out;
-}
-
-.navright .icons:hover {
-  transform: scale(1.2) rotate(10deg);
-  box-shadow: 0 0 10px var(--primary-color);
-}
-
-/* Profile Image */
-.navright .profile {
-  border-radius: 50%;
-  width: 3.5vw;
-  max-width: 35px;
-  box-shadow: 0px 4px 10px rgba(255, 140, 0, 0.6);
-  transition: box-shadow var(--transition-speed),
-    transform var(--transition-speed);
-}
-
-.navright .profile:hover {
-  box-shadow: 0 0 12px var(--secondary-color);
-  transform: scale(1.1);
-}
-
-/* Dropdown Menu - Slide Down Animation */
-.navbar-profile {
-  display: flex;
-  align-items: center;
-  gap: 0.5vw;
-  cursor: pointer;
-  position: relative;
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: var(--background-dark);
-  padding: 1vw 1.5vw;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-  transform: translateY(-10px);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--transition-speed), transform var(--transition-speed);
-}
-
-.navbar-profile:hover .dropdown {
-  opacity: 1;
-  visibility: visible;
+/* Active/Focus States */
+.navleft a:active {
   transform: translateY(0);
 }
 
-/* Dropdown Items */
-.dropdown p {
-  font-size: calc(var(--navbar-font-size) - 0.2vw);
-  margin: 10px 0;
+.navleft a:focus-visible {
+  outline: 2px solid var(--primary-color, #ff8c00);
+  outline-offset: 2px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color, #ff8c00) 0%,
+    var(--secondary-color, #ffb347) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Smooth stagger animation on container hover */
+.navleft:hover li {
+  animation: navItemFloat 0.6s ease infinite alternate;
+}
+
+.navleft:hover li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.navleft:hover li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.navleft:hover li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.navleft:hover li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes navItemFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Active Link Styling (for current page) */
+.navleft a.active,
+.navleft a[aria-current="page"] {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color, #ff8c00) 0%,
+    var(--secondary-color, #ffb347) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.navleft a.active::before,
+.navleft a[aria-current="page"]::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.navleft a.active::after,
+.navleft a[aria-current="page"]::after {
+  width: 100%;
+  height: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .navleft {
+    gap: 2rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .navleft ul {
+    gap: 1.5rem;
+  }
+
+  .navleft a {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navleft {
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .navleft img {
+    height: 2rem;
+  }
+
+  .navleft ul {
+    gap: 1rem;
+  }
+
+  .navleft a {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Navbar Icons - Animated Glow */
+/* NavRight Container - Modern flexbox layout */
+.navright {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.navright:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Profile Container - Enhanced layout */
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   cursor: pointer;
-  color: var(--text-light);
-  transition: color var(--transition-speed), transform 0.3s ease-in-out;
+  position: relative;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
 }
 
-.dropdown p:hover {
-  color: var(--primary-color);
-  transform: translateX(5px);
+.navbar-profile:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.1),
+    rgba(255, 140, 0, 0.05)
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.15);
 }
 
+/* Welcome Text - Elegant typography */
+.navbar-profile h2 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 600;
+  color: var(--text-light, #ffffff);
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff, #e0e0e0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.navbar-profile:hover h2 {
+  background: linear-gradient(135deg, var(--primary-color, #ff8c00), #ffb347);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Profile Image - Premium styling */
+.navbar-profile .profile {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
+  background: linear-gradient(
+        135deg,
+        var(--primary-color, #ff8c00),
+        var(--secondary-color, #ffb347)
+      )
+      padding-box,
+    linear-gradient(
+        135deg,
+        var(--primary-color, #ff8c00),
+        var(--secondary-color, #ffb347)
+      )
+      border-box;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.navbar-profile .profile::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color, #ff8c00),
+    var(--secondary-color, #ffb347)
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-profile:hover .profile {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.15),
+    0 0 0 3px rgba(255, 140, 0, 0.2);
+}
+
+.navbar-profile:hover .profile::before {
+  opacity: 0.3;
+}
+
+/* Caret Icon - Smooth rotation animation */
+.navbar-profile .caret-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.8);
+  opacity: 0.7;
+}
+
+.navbar-profile:hover .caret-icon {
+  transform: rotate(180deg);
+  filter: brightness(1) hue-rotate(20deg);
+  opacity: 1;
+}
+
+/* Dropdown Menu - Modern glass morphism design with hover bridge */
+.navbar-profile .dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 0.5rem 0;
+
+  /* Advanced shadow system */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 12px 24px rgba(0, 0, 0, 0.3),
+    0 6px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Animation properties */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px) scale(0.9);
+  pointer-events: none;
+  z-index: 1000;
+
+  /* Smooth transitions */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+}
+
+/* Invisible bridge to prevent dropdown from closing */
+.navbar-profile .dropdown::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
+}
+
+/* Dropdown arrow */
+.navbar-profile .dropdown::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 24px;
+  width: 16px;
+  height: 16px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+/* Show dropdown with animation - includes bridge area */
+.navbar-profile:hover .dropdown,
+.navbar-profile .dropdown:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Dropdown Items - Interactive design */
+.navbar-profile .dropdown p {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  letter-spacing: 0.02em;
+
+  /* Smooth transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Subtle gradient overlay */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.02),
+    transparent
+  );
+}
+
+/* Hover effects for dropdown items */
+.navbar-profile .dropdown p:hover {
+  color: var(--primary-color, #ff8c00);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 140, 0, 0.1),
+    rgba(255, 140, 0, 0.15),
+    rgba(255, 140, 0, 0.1)
+  );
+  transform: translateX(8px);
+  padding-left: 2rem;
+}
+
+/* Add icons before text */
+.navbar-profile .dropdown p::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color, #ff8c00),
+    var(--secondary-color, #ffb347)
+  );
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+}
+
+.navbar-profile .dropdown p:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Individual item styling */
+.navbar-profile .dropdown p:first-child {
+  border-radius: 20px 20px 0 0;
+  margin-top: 0.25rem;
+}
+
+.navbar-profile .dropdown p:last-child {
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 0.25rem;
+}
+
+.navbar-profile .dropdown p:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Active state */
+.navbar-profile .dropdown p:active {
+  transform: translateX(4px) scale(0.98);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 140, 0, 0.2),
+    rgba(255, 140, 0, 0.25),
+    rgba(255, 140, 0, 0.2)
+  );
+}
+
+/* Focus states for accessibility */
+.navbar-profile .dropdown p:focus-visible {
+  outline: 2px solid var(--primary-color, #ff8c00);
+  outline-offset: -2px;
+  background: rgba(255, 140, 0, 0.1);
+}
+
+/* Staggered animation for dropdown items - only on profile hover */
+.navbar-profile:hover .dropdown p,
+.navbar-profile .dropdown:hover p {
+  animation: slideInStagger 0.4s ease forwards;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.navbar-profile:hover .dropdown p:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.navbar-profile:hover .dropdown p:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+@keyframes slideInStagger {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 /* Hamburger Menu Animation for Small Screens */
 .hamburger {
   display: none;
