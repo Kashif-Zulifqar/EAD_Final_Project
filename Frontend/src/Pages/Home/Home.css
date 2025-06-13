@@ -7,34 +7,23 @@
   /* -webkit-mask-image: linear-gradient(to right, transparent, black 75%); */
   border-radius: 3%;
 }
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.banner-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hero-caption {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
-  color: white;
-  max-width: 600px;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 20px;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  float: right;
+  width: 100%;
+  padding-left: 6%;
+  bottom: 0;
+  top: 150px;
 }
-
+.caption-img {
+  width: 90%;
+  max-width: 420px;
+  margin-bottom: 30px;
+}
 .hero-caption p {
   margin: 0;
+  padding-top: 22%;
+  width: 50vw;
 }
 
 .hero-caption p br {
@@ -54,7 +43,6 @@
   color: #f0f0f0;
   font-weight: 400;
 }
-
 .hero-btns {
   display: flex;
   gap: 10px;
