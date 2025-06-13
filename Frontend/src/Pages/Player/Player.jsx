@@ -64,6 +64,15 @@ const Player = () => {
         <p className="hovered">Movie Details</p>
         <p>{apiData.name || "No Title"}</p>
         <p>{apiData.type || "No Type Available"}</p>
+        <button
+          className="favourite-btn"
+          onClick={(e) => {
+            e.preventDefault(); // Prevents Link navigation on button click
+            handleAddToFavourites(card);
+          }}
+        >
+          ❤️ Add to Favourite
+        </button>
       </div>
     </div>
   );

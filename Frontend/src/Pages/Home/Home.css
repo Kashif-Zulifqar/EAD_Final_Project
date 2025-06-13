@@ -7,24 +7,54 @@
   /* -webkit-mask-image: linear-gradient(to right, transparent, black 75%); */
   border-radius: 3%;
 }
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero-caption {
   position: absolute;
-  float: right;
-  width: 100%;
-  padding-left: 6%;
-  bottom: 0;
-  top: 150px;
+  bottom: 40px;
+  left: 40px;
+  color: white;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
-.caption-img {
-  width: 90%;
-  max-width: 420px;
-  margin-bottom: 30px;
-}
+
 .hero-caption p {
-  max-width: 700px;
-  font: 17px;
-  margin-bottom: 20px;
+  margin: 0;
 }
+
+.hero-caption p br {
+  display: none; /* optional: prevents extra spacing on mobile */
+}
+
+.hero-caption p::first-line {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffdd57; /* attractive title color */
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+.hero-caption p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+  font-weight: 400;
+}
+
 .hero-btns {
   display: flex;
   gap: 10px;
