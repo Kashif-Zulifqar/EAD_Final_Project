@@ -7,8 +7,8 @@ A full-stack **Netflix-inspired** web application built using the **MERN stack**
 
 ## 📸 Screenshots
 
-![Homepage](./screenshots/homepage.png)
-![Trailer View](./screenshots/trailer-view.png)
+![Homepage](./HomePage1.png)
+![Trailer View](./Player.png)
 
 ---
 
