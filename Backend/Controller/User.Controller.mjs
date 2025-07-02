@@ -25,7 +25,7 @@ export const Signup = async (req, res) => {
     await newUser.save();
     console.log("User saved successfully:", newUser.email);
 
-    const token = jwt.sign({ userId: newUser._id }, "JWTSecret", {
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_Secret, {
       expiresIn: "2d",
     });
 
@@ -70,11 +70,9 @@ export const Signin = async (req, res) => {
       return res.status(401).json({ message: "Invalid password." });
     }
 
-    const token = jwt.sign(
-      { userId: user._id },
-      "JWTSecret", // Replace with process.env.JWT_SECRET in production
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_Secret, {
+      expiresIn: "7d",
+    });
 
     return res.status(200).json({
       token,

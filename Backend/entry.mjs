@@ -3,6 +3,8 @@ import connectDB from "./database.mjs";
 import userRoutes from "./Routes/UserRoutes.mjs";
 import movieRoutes from "./Routes/MoviesRoutes.mjs";
 import cors from "cors"; // Import CORS middleware
+import dotenv from "dotenv";
+dotenv.config(); // Load environment variables from .env file
 const app = express();
 
 const corsOptions = {
@@ -18,4 +20,4 @@ app.use("/user", userRoutes);
 app.use("/movies", movieRoutes);
 // Start Server
 connectDB();
-app.listen(PORT, () => console.log("Server running on port 1000"));
+app.listen(() => console.log(`Server running on port ${process.env.PORT}`));

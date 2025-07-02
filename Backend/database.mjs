@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-
-const mongoURI =
-  "mongodb+srv://bhuttokashifali957:mongodb%4012@cluster0.puflo.mongodb.net/MoviesDB";
+import dotenv from "dotenv";
+dotenv.config();
+const mongoURI = process.env.Mongo_URI;
 
 async function connectDB() {
   // console.log("in connect db");
