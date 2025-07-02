@@ -13,11 +13,11 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Apply CORS with the options
-const PORT = 1000;
+const PORT = process.env.PORT || 3000; // Use PORT from environment variables or default to 2000
 app.use(express.json()); //MIDDLEWARE
 app.use(cors(corsOptions)); // Apply the CORS configuration
 app.use("/user", userRoutes);
 app.use("/movies", movieRoutes);
 // Start Server
 connectDB();
-app.listen(() => console.log(`Server running on port ${process.env.PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
